@@ -1,5 +1,19 @@
+//! `elify-lang` library entrypoint.
+//!
+//! This crate exposes:
+//! - A JS-like to MASM transpiler.
+//! - MASM execution/proving/verification helpers.
+//! - A deployable execution engine with task queues and event handlers.
+
 pub mod compiler;
 pub mod executor;
+
+pub use compiler::{CompilerError, transpile_js_to_masm};
+pub use executor::{
+    EngineError, EngineEvent, EventKind, ExecutionArtifacts, ExecutionEngine, ExecutorError,
+    ProgramId, TaskInput, TaskResult, assemble_program, execute_with_proof,
+    stack_outputs_from_ints, verify_execution,
+};
 
 #[cfg(test)]
 mod tests {
